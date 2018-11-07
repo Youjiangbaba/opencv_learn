@@ -1,0 +1,36 @@
+T对角点的定义基于候选特征点周围的图像强度值。以某个点为中心做一个圆，根据圆上的像素值判断该点是否为关键点。比如，大于圆周长3/4的圆弧上的所有像素强度都与圆心强度明显不同。（可以用四点比较法）
+		std::vector<cv::KeyPoint> keypoints;                      关键点向量
+		cv::FastFeatureDetector ptrFAST(40);                       检测阈值    
+		ptrFAST.detect(image,keypoints);
+		cv::drawKeypoints(image,keypoints,result,cv::Scalay(),
+							cv::DrawMatchesFlags::DRAW_OVER_OUTIMG); 画图标志
+
+	**	cv::Ptr<cv::检测方法> ptrFAST = cv:: 检测方法::create(“ 检测方法 ”) 
+		ptrFAST->detect(image,keypoints);
+支持的算子主要包括以下几种：
+
+       “FAST”—FastFeatureDetector;
+
+       "STAR"—StarFeatureDetector;
+
+       "SIFT"—  SiftFeatureDetector;
+
+       "SURF"—SurfFeatureDetector;
+
+       "ORB" — OrbFeatureDetecotr;
+
+       "MSER"—MserFeatureDetector;
+
+       "GFTT"— GoodFeatureDetector;
+
+       "HARRIS"—GoodFeatureToTrackDetector;
+
+       "Dense" —DenseFeatureDetector;
+
+       "SimpleBlob"—SimpleBlobDectector;
+
+还支持组合类型：特征检测算子的适配器名字("Grid"-GridAdaptedFeatureDetector,"Pyramid"-PyramidAdaptedFeatureDetector)+对应特征检测算子(上面支持的类型)的名字构成。比如：“GridFAST”、“PyramidSTAR”等。
+
+从FeatureDetector类派生出了对应于不同检测算法的子类：FastFeatureDetector、MserFeatureDetector、StarFeatureDetector、SiftFeatureDetector、SurfFeatureDetector、OrbFeatureDetector、SimpleBlobDetector等。
+
+
